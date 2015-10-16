@@ -14,7 +14,9 @@ namespace twozerofoureight
     {
         Model model;
         Controller controller;
+        public static int score = 4;
        
+
         public TwoZeroFourEightView()
         {
             InitializeComponent();
@@ -35,7 +37,9 @@ namespace twozerofoureight
             if (i != 0)
             {
                 l.Text = Convert.ToString(i);
+
             } else {
+
                 l.Text = "";
             }
             switch (i)
@@ -77,25 +81,49 @@ namespace twozerofoureight
             UpdateTile(lbl33,board[3, 3]);
         }
 
+        
         private void btnLeft_Click(object sender, EventArgs e)
         {
             controller.ActionPerformed(TwoZeroFourEightController.LEFT);
+            score += 2;
+            lblscore.Text = ToString();
         }
 
         private void btnRight_Click(object sender, EventArgs e)
         {
             controller.ActionPerformed(TwoZeroFourEightController.RIGHT);
+            score += 2;
+            lblscore.Text = ToString();
         }
 
         private void btnUp_Click(object sender, EventArgs e)
         {
             controller.ActionPerformed(TwoZeroFourEightController.UP);
+            score += 2;
+            lblscore.Text = ToString();
         }
 
         private void btnDown_Click(object sender, EventArgs e)
         {
             controller.ActionPerformed(TwoZeroFourEightController.DOWN);
+            score += 2;
+            lblscore.Text = ToString();
         }
 
-    }
+        public override string ToString()
+        {
+            return "" + score + "";
+        }
+
+        private void TwoZeroFourEightView_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblScore_Click(object sender, EventArgs e)
+        {
+
+        }
+
+}
 }
