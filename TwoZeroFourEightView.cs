@@ -14,9 +14,9 @@ namespace twozerofoureight
     {
         Model model;
         Controller controller;
-        public static int score = 4;
-       
 
+        
+       
         public TwoZeroFourEightView()
         {
             InitializeComponent();
@@ -25,11 +25,16 @@ namespace twozerofoureight
             controller = new TwoZeroFourEightController();
             controller.AddModel(model);
             controller.ActionPerformed(TwoZeroFourEightController.LEFT);
+            TwoZeroFourEightScoreView scoreView = new TwoZeroFourEightScoreView();
+            scoreView.Visible = true;
+            scoreView.Enabled = true;
+            model.AttachObserver(scoreView);
         }
 
         public void Notify(Model m)
         {
             UpdateBoard(((TwoZeroFourEightModel) m).GetBoard());
+            label1.Text  = Convert.ToString(((TwoZeroFourEightModel)m).LblScore());
         }
 
         private void UpdateTile(Label l, int i)
@@ -37,9 +42,7 @@ namespace twozerofoureight
             if (i != 0)
             {
                 l.Text = Convert.ToString(i);
-
             } else {
-
                 l.Text = "";
             }
             switch (i)
@@ -81,49 +84,44 @@ namespace twozerofoureight
             UpdateTile(lbl33,board[3, 3]);
         }
 
-        
         private void btnLeft_Click(object sender, EventArgs e)
         {
             controller.ActionPerformed(TwoZeroFourEightController.LEFT);
-            score += 2;
-            lblscore.Text = ToString();
         }
 
         private void btnRight_Click(object sender, EventArgs e)
         {
             controller.ActionPerformed(TwoZeroFourEightController.RIGHT);
-            score += 2;
-            lblscore.Text = ToString();
         }
 
         private void btnUp_Click(object sender, EventArgs e)
         {
             controller.ActionPerformed(TwoZeroFourEightController.UP);
-            score += 2;
-            lblscore.Text = ToString();
         }
 
         private void btnDown_Click(object sender, EventArgs e)
         {
             controller.ActionPerformed(TwoZeroFourEightController.DOWN);
-            score += 2;
-            lblscore.Text = ToString();
         }
 
-        public override string ToString()
+        private void button1_ChangeUICues(object sender, UICuesEventArgs e)
         {
-            return "" + score + "";
+            
         }
 
-        private void TwoZeroFourEightView_Load(object sender, EventArgs e)
+        private void label1_Click(object sender , EventArgs e)
         {
 
         }
 
-        private void lblScore_Click(object sender, EventArgs e)
+        private void TwoZeroFourEightView_Load(object sender , EventArgs e )
         {
 
         }
 
-}
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+    }
 }
